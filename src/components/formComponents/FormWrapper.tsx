@@ -16,7 +16,7 @@ export interface IFormWrapperProps {
   helperText?: React.ReactNode;
   isInvalid: boolean;
   touched?: any;
-  z:any
+  z?:any
 }
 
 const FromWrapper: React.FC<IFormWrapperProps> = ({
