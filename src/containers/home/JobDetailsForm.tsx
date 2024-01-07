@@ -6,9 +6,11 @@ import * as Yup from "yup";
 import FormInput from "../../components/formComponents/FormInput";
 import { IJobDetails } from "../../interface/forms";
 import { useData } from "./DataProvider";
+import { useTabIndex } from "./TabProvider";
 
 const JobDetailsForm: React.FC = () => {
   const { state, setState } = useData();
+  const { setIndex } = useTabIndex();
 
   const { handleChange, errors, touched, handleBlur, handleSubmit, values } =
     useFormik<IJobDetails>({
@@ -22,9 +24,13 @@ const JobDetailsForm: React.FC = () => {
       onSubmit: (values) => {
         console.log({ values });
         // Go to next step
+        setIndex((prev) => prev + 1);
       },
     });
 
+  const handlePrev = () => {
+    setIndex((prev) => prev - 1);
+  }
 
   console.log(values, state);
   useEffect(() => {
@@ -68,7 +74,7 @@ const JobDetailsForm: React.FC = () => {
           value={values.jobLocation}
         />
         <Flex w="100%" justify="flex-end" mt="4rem" gap="20px">
-          <Button colorScheme="gray" type="button">
+          <Button colorScheme="gray" type="button" onClick={handlePrev}>
             Previous
           </Button>
           <Button colorScheme="red" type="submit">

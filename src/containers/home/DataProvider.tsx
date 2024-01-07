@@ -6,16 +6,19 @@ const initialValues = {
     noOfOpenings: 0,
     requisitionTitle: "",
     urgency: "",
+    // isError:true
   },
   jobDetails: {
     jobDetails: "",
     jobLocation: "",
     jobTitle: "",
+    // isError:true
   },
   interviewSettings: {
     interviewDuration: "",
     interviewLanguage: "",
     interviewMode: "",
+    // isError:true
   },
 };
 

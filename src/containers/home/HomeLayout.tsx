@@ -9,12 +9,15 @@ import {
   TabProps,
   Box,
   Grid,
+  useTab,
 } from "@chakra-ui/react";
 import React from "react";
 import InterviewSettingsForm from "./InterviewSettingsForm";
 import JobDetailsForm from "./JobDetailsForm";
 import RequisitionForm from "./RequisitionDetailsForm";
 import DisplayCard from "./PreviewCard";
+import { useData } from "./DataProvider";
+import { useTabIndex } from "./TabProvider";
 
 const CustomTab: React.FC<TabProps> = ({ children, ...props }) => {
   return (
@@ -25,17 +28,24 @@ const CustomTab: React.FC<TabProps> = ({ children, ...props }) => {
 };
 
 const HomeLayout = () => {
+  const { state } = useData();
+  const { requisitionDetails, jobDetails, interviewSettings } = state;
+  const {index} = useTabIndex();
+
+  const isreqiuistionDetails =()=> (requisitionDetails.gender && requisitionDetails.noOfOpenings && requisitionDetails.requisitionTitle && requisitionDetails.urgency)? false:true;
+  const isJobDetails =()=> (jobDetails.jobDetails && jobDetails.jobTitle && jobDetails.jobLocation)? false:true;
+
   return (
     <Box w="100%">
       <Container maxW="1200px">
         <Heading fontFamily="Poppins" fontSize="1.5rem" my="2rem">
           Create Candidate Requisition
         </Heading>
-        <Tabs isLazy>
+        <Tabs index={index} isLazy>
           <TabList>
             <CustomTab>Requistion Details</CustomTab>
-            <CustomTab>Job Details</CustomTab>
-            <CustomTab>Interview Settings</CustomTab>
+            <CustomTab isDisabled={isreqiuistionDetails()}>Job Details</CustomTab>
+            <CustomTab isDisabled={isJobDetails()}>Interview Settings</CustomTab>
           </TabList>
           <Grid display="grid" gridTemplateColumns="3fr 2fr" gap="24px">
             <TabPanels>

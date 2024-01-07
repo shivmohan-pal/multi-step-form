@@ -8,9 +8,11 @@ import FormSelect from "../../components/formComponents/FormSelect";
 import { IRequisitionDetails } from "../../interface/forms";
 import { genderOptions, urgencyOptions } from "./constants";
 import { useData } from "./DataProvider";
+import { useTabIndex } from "./TabProvider";
 
 const RequisitionDetailsForm: React.FC = () => {
   const { state, setState } = useData();
+  const { setIndex } = useTabIndex();
 
   const {
     handleChange,
@@ -35,7 +37,10 @@ const RequisitionDetailsForm: React.FC = () => {
     }),
     onSubmit: (values) => {
       //  Go to Next Step
+      setIndex((prev) => prev + 1);
+
     },
+  
   });
 
 
