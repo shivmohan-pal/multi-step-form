@@ -1,6 +1,7 @@
 import { Button, Flex, Box } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 import FormSelect from "../../components/formComponents/FormSelect";
 import { IInterViewSettings } from "../../interface/forms";
@@ -25,6 +26,11 @@ const InterviewDetailsForm: React.FC = () => {
     setFieldValue,
   } = useFormik<IInterViewSettings>({
     initialValues: state.interviewSettings,
+    validationSchema: Yup.object().shape({
+      interviewMode: Yup.string().required("Interview Mode is required"),
+      interviewDuration: Yup.string().required("Interview Duration is required"),
+      interviewLanguage: Yup.string().required("Interview Language is required"),
+    }),
     onSubmit: (values) => {
       console.log({ values });
       alert("Form successfully submitted");
@@ -74,9 +80,9 @@ const InterviewDetailsForm: React.FC = () => {
           options={interviewLanguageOptions}
           onChange={setFieldValue}
           onBlur={setFieldTouched}
-          error={errors.interviewLanguage}
-          touched={touched.interviewLanguage}
-          value={values.interviewLanguage}
+          error={errors?.interviewLanguage}
+          touched={touched?.interviewLanguage}
+          value={values?.interviewLanguage}
           z={0}
         />
         <Flex w="100%" justify="flex-end" mt="4rem" gap="20px">
