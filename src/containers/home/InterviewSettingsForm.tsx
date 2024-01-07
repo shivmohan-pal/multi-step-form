@@ -10,9 +10,11 @@ import {
   interviewModeOptions,
 } from "./constants";
 import { useData } from "./DataProvider";
+import { useTabIndex } from "./TabProvider";
 
 const InterviewDetailsForm: React.FC = () => {
   const { state, setState } = useData();
+  const { handlePrev } = useTabIndex();
 
   const {
     errors,
@@ -78,7 +80,7 @@ const InterviewDetailsForm: React.FC = () => {
           z={0}
         />
         <Flex w="100%" justify="flex-end" mt="4rem" gap="20px">
-          <Button colorScheme="gray" type="button">
+          <Button colorScheme="gray" type="button" onClick={()=>handlePrev()}>
             Previous
           </Button>
           <Button colorScheme="red" type="submit">

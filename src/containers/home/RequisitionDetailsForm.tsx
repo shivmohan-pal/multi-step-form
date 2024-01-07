@@ -12,7 +12,7 @@ import { useTabIndex } from "./TabProvider";
 
 const RequisitionDetailsForm: React.FC = () => {
   const { state, setState } = useData();
-  const { setIndex } = useTabIndex();
+  const { handleNext } = useTabIndex();
 
   const {
     handleChange,
@@ -37,14 +37,11 @@ const RequisitionDetailsForm: React.FC = () => {
     }),
     onSubmit: (values) => {
       //  Go to Next Step
-      setIndex((prev) => prev + 1);
-
+       handleNext();
     },
-  
+
   });
 
-
-  console.log(values, state);
   useEffect(() => {
     setState((state) => {
       return { ...state, requisitionDetails: values }

@@ -10,29 +10,30 @@ import { useTabIndex } from "./TabProvider";
 
 const JobDetailsForm: React.FC = () => {
   const { state, setState } = useData();
-  const { setIndex } = useTabIndex();
+  const { handlePrev, handleNext } = useTabIndex();
 
-  const { handleChange, errors, touched, handleBlur, handleSubmit, values } =
-    useFormik<IJobDetails>({
-      initialValues: state.jobDetails,
-      validationSchema: Yup.object().shape({
-        jobTitle: Yup.string().required("Job Title is required"),
-        jobDetails: Yup.string().required("Job Details is required"),
-        jobLocation: Yup.string().required("Job Location is required"),
-        jobPosition: Yup.string().required("Job position is required"),
-      }),
-      onSubmit: (values) => {
-        console.log({ values });
-        // Go to next step
-        setIndex((prev) => prev + 1);
-      },
-    });
+  const {
+    handleChange,
+    errors,
+    touched,
+    handleBlur,
+    handleSubmit,
+    values
+  } = useFormik<IJobDetails>({
+    initialValues: state.jobDetails,
+    validationSchema: Yup.object().shape({
+      jobTitle: Yup.string().required("Job Title is required"),
+      jobDetails: Yup.string().required("Job Details is required"),
+      jobLocation: Yup.string().required("Job Location is required"),
+      // jobPosition: Yup.string().required("Job position is required"),
+    }),
+    onSubmit: (values) => {
+      console.log("Job submit");
+      // Go to next step
+      handleNext();
+    },
+  });
 
-  const handlePrev = () => {
-    setIndex((prev) => prev - 1);
-  }
-
-  console.log(values, state);
   useEffect(() => {
     setState((state) => {
       return { ...state, jobDetails: values }
@@ -69,12 +70,12 @@ const JobDetailsForm: React.FC = () => {
           placeholder="Enter job location"
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.jobLocation}
-          touched={touched.jobLocation}
-          value={values.jobLocation}
+          error={errors?.jobLocation}
+          touched={touched?.jobLocation}
+          value={values?.jobLocation}
         />
         <Flex w="100%" justify="flex-end" mt="4rem" gap="20px">
-          <Button colorScheme="gray" type="button" onClick={handlePrev}>
+          <Button colorScheme="gray" type="button" onClick={()=>handlePrev()}>
             Previous
           </Button>
           <Button colorScheme="red" type="submit">

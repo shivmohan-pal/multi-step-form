@@ -31,6 +31,7 @@ const HomeLayout = () => {
   const { state } = useData();
   const { requisitionDetails, jobDetails, interviewSettings } = state;
   const {index} = useTabIndex();
+  console.log(state);
 
   const isreqiuistionDetails =()=> (requisitionDetails.gender && requisitionDetails.noOfOpenings && requisitionDetails.requisitionTitle && requisitionDetails.urgency)? false:true;
   const isJobDetails =()=> (jobDetails.jobDetails && jobDetails.jobTitle && jobDetails.jobLocation)? false:true;
