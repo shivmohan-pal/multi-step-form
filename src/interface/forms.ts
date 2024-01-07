@@ -69,3 +69,8 @@ export interface IRequisitionDetails {
   urgency: string;
   gender: string;
 }
+export interface IState {
+  requisitionDetails:IRequisitionDetails;
+  jobDetails: IJobDetails;
+  interviewSettings: IInterViewSettings;
+}

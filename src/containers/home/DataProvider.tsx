@@ -1,24 +1,22 @@
+import { IState } from "@src/interface/forms";
 import React, { createContext, useContext, useState } from "react";
 
-const initialValues = {
+const initialValues: IState = {
   requisitionDetails: {
     gender: "",
     noOfOpenings: 0,
     requisitionTitle: "",
     urgency: "",
-    // isError:true
   },
   jobDetails: {
     jobDetails: "",
     jobLocation: "",
     jobTitle: "",
-    // isError:true
   },
   interviewSettings: {
     interviewDuration: "",
     interviewLanguage: "",
     interviewMode: "",
-    // isError:true
   },
 };
 
