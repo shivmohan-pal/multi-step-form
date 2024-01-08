@@ -6,6 +6,7 @@ import TabProvider from "@src/containers/home/TabProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+    // @ts-ignore
     <TabProvider>
       <ChakraProvider>
         <Component {...pageProps} />
