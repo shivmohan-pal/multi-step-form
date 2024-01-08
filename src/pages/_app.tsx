@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // @ts-ignore
     <TabProvider>
       <ChakraProvider>
+        {/* @ts-ignore */}
         <Component {...pageProps} />
       </ChakraProvider>
     </TabProvider>
