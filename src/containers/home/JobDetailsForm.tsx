@@ -43,7 +43,7 @@ const JobDetailsForm: React.FC = () => {
       return { ...state, jobDetails: values }
     })
 
-  }, [values]);
+  }, [values,setState]);
 
   return (
     <Box width="100%" as="form" onSubmit={handleSubmit as any}>

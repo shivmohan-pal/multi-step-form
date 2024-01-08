@@ -50,7 +50,7 @@ const InterviewDetailsForm: React.FC = () => {
       return { ...state, interviewSettings: values }
     })
 
-  }, [values]);
+  }, [values,setState]);
 
   return (
     <Box width="100%" as="form" onSubmit={handleSubmit as any}>

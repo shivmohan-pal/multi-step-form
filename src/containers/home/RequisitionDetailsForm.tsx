@@ -51,7 +51,7 @@ const RequisitionDetailsForm: React.FC = () => {
       return { ...state, requisitionDetails: values }
     })
 
-  }, [values]);
+  }, [values,setState]);
 
 
   return (
