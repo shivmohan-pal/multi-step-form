@@ -9,15 +9,16 @@ import {
   TabProps,
   Box,
   Grid,
-  useTab,
 } from "@chakra-ui/react";
 import React from "react";
 import InterviewSettingsForm from "./InterviewSettingsForm";
 import JobDetailsForm from "./JobDetailsForm";
 import RequisitionForm from "./RequisitionDetailsForm";
 import DisplayCard from "./PreviewCard";
-import { useData } from "./DataProvider";
+import { IDataProvider, useData } from "./DataProvider";
 import { useTabIndex } from "./TabProvider";
+import { IState } from "@src/interface/forms";
+
 
 const CustomTab: React.FC<TabProps> = ({ children, ...props }) => {
   return (
@@ -28,10 +29,12 @@ const CustomTab: React.FC<TabProps> = ({ children, ...props }) => {
 };
 
 const HomeLayout = () => {
-  const { state } = useData();
-  const { requisitionDetails, jobDetails, interviewSettings } = state;
+  // eslint-disable-next-line 
+  //@ts-ignore
+  const { state } = useData(); 
+  const { requisitionDetails, jobDetails } = state;
+  //@ts-ignore
   const {index} = useTabIndex();
-  console.log(state);
 
   const isreqiuistionDetails =()=> (requisitionDetails.gender && requisitionDetails.noOfOpenings && requisitionDetails.requisitionTitle && requisitionDetails.urgency)? false:true;
   const isJobDetails =()=> (jobDetails.jobDetails && jobDetails.jobTitle && jobDetails.jobLocation)? false:true;

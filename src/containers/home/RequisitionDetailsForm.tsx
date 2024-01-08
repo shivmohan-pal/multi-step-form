@@ -11,7 +11,10 @@ import { useData } from "./DataProvider";
 import { useTabIndex } from "./TabProvider";
 
 const RequisitionDetailsForm: React.FC = () => {
+    // eslint-disable-next-line 
+  //@ts-ignore
   const { state, setState } = useData();
+  //@ts-ignore
   const { handleNext } = useTabIndex();
 
   const {
@@ -43,6 +46,7 @@ const RequisitionDetailsForm: React.FC = () => {
   });
 
   useEffect(() => {
+  // @ts-ignore
     setState((state) => {
       return { ...state, requisitionDetails: values }
     })

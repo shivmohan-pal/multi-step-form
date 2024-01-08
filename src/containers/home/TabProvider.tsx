@@ -3,8 +3,9 @@ import React, { createContext, useContext, useState } from "react";
 // const initialValues = {};
 
 const TabContext = createContext<{
-  index: typeof Number;
-  setIndex: React.Dispatch<React.SetStateAction<typeof Number>>;
+  index: Number;
+  handlePrev:Function;
+  handleNext:Function;
 } | null>(null);
 
 const TabProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -19,7 +20,7 @@ const TabProvider: React.FC<{ children: React.ReactNode }> = ({
     setIndex((prev) => prev + 1);
   }
   return (
-    <TabContext.Provider value={{ index, handlePrev,handleNext }}>
+    <TabContext.Provider value={{ index, handlePrev, handleNext }}>
       {children}
     </TabContext.Provider>
   );

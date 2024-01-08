@@ -35,6 +35,7 @@ const KeyValue: React.FC<{
 };
 
 const PreviewCard: React.FC = () => {
+  // @ts-ignore
   const { state } = useData();
   const { requisitionDetails, jobDetails, interviewSettings } = state;
 

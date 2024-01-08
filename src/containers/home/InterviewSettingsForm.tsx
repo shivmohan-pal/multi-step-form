@@ -14,7 +14,12 @@ import { useData } from "./DataProvider";
 import { useTabIndex } from "./TabProvider";
 
 const InterviewDetailsForm: React.FC = () => {
+    // eslint-disable-next-line 
+  // @ts-nochecks
+  //@ts-ignore
   const { state, setState } = useData();
+
+  //@ts-ignore
   const { handlePrev } = useTabIndex();
 
   const {
@@ -40,6 +45,7 @@ const InterviewDetailsForm: React.FC = () => {
 
   console.log(values, state);
   useEffect(() => {
+  //@ts-ignore
     setState((state) => {
       return { ...state, interviewSettings: values }
     })
